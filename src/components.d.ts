@@ -6,22 +6,53 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  Color,
+  RouterDirection,
+} from './interface';
 
 export namespace Components {
-  interface MyComponent {
+  interface IonCard {
     /**
-    * The first name
+    * If `true`, a button tag will be rendered and the card will be tappable.
     */
-    'first': string;
+    'button': boolean;
     /**
-    * The last name
+    * The color to use from your application's color palette. Default options are: `"primary"`, `"secondary"`, `"tertiary"`, `"success"`, `"warning"`, `"danger"`, `"light"`, `"medium"`, and `"dark"`. For more information on colors, see [theming](/docs/theming/basics).
     */
-    'last': string;
+    'color'?: Color;
     /**
-    * The middle name
+    * If `true`, the user cannot interact with the card.
     */
-    'middle': string;
+    'disabled': boolean;
+    /**
+    * This attribute instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. If the attribute has a value, it is used as the pre-filled file name in the Save prompt (the user can still change the file name if they want).
+    */
+    'download': string | undefined;
+    /**
+    * Contains a URL or a URL fragment that the hyperlink points to. If this property is set, an anchor tag will be rendered.
+    */
+    'href': string | undefined;
+    /**
+    * The mode determines which platform styles to use.
+    */
+    'mode'?: "ios" | "md";
+    /**
+    * Specifies the relationship of the target object to the link object. The value is a space-separated list of [link types](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types).
+    */
+    'rel': string | undefined;
+    /**
+    * When using a router, it specifies the transition direction when navigating to another page using `href`.
+    */
+    'routerDirection': RouterDirection;
+    /**
+    * Specifies where to display the linked URL. Only applies when an `href` is provided. Special keywords: `"_blank"`, `"_self"`, `"_parent"`, `"_top"`.
+    */
+    'target': string | undefined;
+    /**
+    * The type of the button. Only used when an `onclick` or `button` property is present.
+    */
+    'type': 'submit' | 'reset' | 'button';
   }
   interface MyComponent {
     /**
@@ -42,10 +73,10 @@ export namespace Components {
 declare global {
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLIonCardElement extends Components.IonCard, HTMLStencilElement {}
+  var HTMLIonCardElement: {
+    prototype: HTMLIonCardElement;
+    new (): HTMLIonCardElement;
   };
 
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
@@ -54,25 +85,53 @@ declare global {
     new (): HTMLMyComponentElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'ion-card': HTMLIonCardElement;
     'my-component': HTMLMyComponentElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent {
+  interface IonCard {
     /**
-    * The first name
+    * If `true`, a button tag will be rendered and the card will be tappable.
     */
-    'first'?: string;
+    'button'?: boolean;
     /**
-    * The last name
+    * The color to use from your application's color palette. Default options are: `"primary"`, `"secondary"`, `"tertiary"`, `"success"`, `"warning"`, `"danger"`, `"light"`, `"medium"`, and `"dark"`. For more information on colors, see [theming](/docs/theming/basics).
     */
-    'last'?: string;
+    'color'?: Color;
     /**
-    * The middle name
+    * If `true`, the user cannot interact with the card.
     */
-    'middle'?: string;
+    'disabled'?: boolean;
+    /**
+    * This attribute instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. If the attribute has a value, it is used as the pre-filled file name in the Save prompt (the user can still change the file name if they want).
+    */
+    'download'?: string | undefined;
+    /**
+    * Contains a URL or a URL fragment that the hyperlink points to. If this property is set, an anchor tag will be rendered.
+    */
+    'href'?: string | undefined;
+    /**
+    * The mode determines which platform styles to use.
+    */
+    'mode'?: "ios" | "md";
+    /**
+    * Specifies the relationship of the target object to the link object. The value is a space-separated list of [link types](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types).
+    */
+    'rel'?: string | undefined;
+    /**
+    * When using a router, it specifies the transition direction when navigating to another page using `href`.
+    */
+    'routerDirection'?: RouterDirection;
+    /**
+    * Specifies where to display the linked URL. Only applies when an `href` is provided. Special keywords: `"_blank"`, `"_self"`, `"_parent"`, `"_top"`.
+    */
+    'target'?: string | undefined;
+    /**
+    * The type of the button. Only used when an `onclick` or `button` property is present.
+    */
+    'type'?: 'submit' | 'reset' | 'button';
   }
   interface MyComponent {
     /**
@@ -90,7 +149,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
-    'my-component': MyComponent;
+    'ion-card': IonCard;
     'my-component': MyComponent;
   }
 }
@@ -101,7 +160,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
-      'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+      'ion-card': LocalJSX.IonCard & JSXBase.HTMLAttributes<HTMLIonCardElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }
   }
